@@ -1,0 +1,766 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Gentle Hands Zambia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS Variables - Gentle Hands Zambia Brand Palette ===== */
+        :root {
+            /* Primary Brand Colors */
+            --teal: #6BA2A0;
+            --teal-deep: #3E6F6C;
+            --terracotta: #D97A5C;
+            --blush: #E8A2A6;
+            --cream: #F5F0E1;
+            --cream-light: #FCFBF8;
+            
+            /* Supporting Colors */
+            --sage: #AFC8B8;
+            --charcoal: #4A4A4A;
+            --gray-light: #E7ECEB;
+            
+            /* Status Colors */
+            --success: #4CAF50;
+            --warning: #F4A261;
+            --error: #E76F51;
+            --info: #5B8DEF;
+            
+            /* Derived Variables */
+            --primary-navy: var(--teal-deep);
+            --primary-teal: var(--teal);
+            --warm-stone: var(--terracotta);
+            --warm-blush: var(--blush);
+            --bg: var(--cream-light);
+            --text: var(--charcoal);
+            --muted: #6B7A78;
+            --shadow: 0 20px 60px rgba(62, 111, 108, 0.14);
+            --shadow-sm: 0 4px 20px rgba(62, 111, 108, 0.08);
+            --radius-xl: 24px;
+            --radius-lg: 18px;
+            --radius-md: 14px;
+            --radius-sm: 10px;
+            --max-width: 800px;
+        }
+
+        /* ===== Reset & Base ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Nunito", sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(calc(100% - 2rem), 1200px);
+            margin-inline: auto;
+        }
+
+        /* ===== Typography ===== */
+        h1, h2, h3, h4 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--teal-deep);
+        }
+        h2 {
+            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+        }
+        h3 {
+            font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+            color: var(--teal-deep);
+            margin-bottom: 0.5rem;
+        }
+        h4 {
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        .text-gray {
+            color: var(--muted);
+        }
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+        .mt-4 {
+            margin-top: 1.5rem;
+        }
+
+        /* ===== Buttons ===== */
+        .btn {
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            border-radius: 999px;
+            padding: 0.85rem 2rem;
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            text-align: center;
+        }
+
+        .btn:active {
+            transform: translateY(1px) scale(0.98);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
+            color: #fff;
+            box-shadow: 0 16px 32px rgba(62, 111, 108, 0.28);
+        }
+        .btn-primary:hover {
+            box-shadow: 0 20px 40px rgba(62, 111, 108, 0.35);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--terracotta) 0%, #C96A4C 100%);
+            color: #fff;
+            box-shadow: 0 16px 32px rgba(217, 122, 92, 0.28);
+        }
+        .btn-secondary:hover {
+            box-shadow: 0 20px 40px rgba(217, 122, 92, 0.35);
+        }
+
+        .btn-sage {
+            background: var(--sage);
+            color: var(--teal-deep);
+            box-shadow: 0 16px 32px rgba(175, 200, 184, 0.3);
+        }
+        .btn-sage:hover {
+            box-shadow: 0 20px 40px rgba(175, 200, 184, 0.4);
+        }
+
+        .btn-lg {
+            padding: 1rem 2.8rem;
+            font-size: 1.05rem;
+        }
+        .btn-lg.w-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 1.2rem;
+            font-size: 0.8rem;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(252, 251, 248, 0.85);
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 72px;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: "Poppins", sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--teal-deep);
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .logo-heart {
+            color: var(--blush);
+            font-size: 1.3rem;
+        }
+
+        .nav {
+            display: none;
+            align-items: center;
+            gap: 2rem;
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .nav a {
+            position: relative;
+            transition: color 0.25s ease;
+        }
+
+        .nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.3rem;
+            width: 100%;
+            height: 2px;
+            background: var(--teal);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.35s ease;
+            border-radius: 4px;
+        }
+
+        .nav a:hover {
+            color: var(--teal-deep);
+        }
+        .nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav a.active {
+            color: var(--teal-deep);
+        }
+        .nav a.active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-menu-toggle {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--teal-deep);
+            cursor: pointer;
+            padding: 0.3rem 0.5rem;
+            font-family: "Nunito", sans-serif;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 1rem 0 1.5rem;
+            border-top: 1px solid var(--gray-light);
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            padding: 0.4rem 0;
+            transition: color 0.25s ease;
+        }
+        .mobile-menu a:hover {
+            color: var(--teal-deep);
+        }
+
+        /* ===== Page Hero ===== */
+        .page-hero {
+            background: linear-gradient(135deg, var(--teal-deep) 0%, var(--teal) 100%);
+            color: white;
+            padding: 2.5rem 0 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-hero h1 {
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+
+        .page-hero p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== Cards ===== */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border: 1px solid var(--gray-light);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .card:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== Contact Info ===== */
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 0.8rem;
+            border-radius: var(--radius-sm);
+            background: rgba(107, 162, 160, 0.05);
+            transition: background 0.2s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(107, 162, 160, 0.1);
+        }
+
+        .contact-item .icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item .label {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .contact-item a {
+            color: var(--teal-deep);
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--terracotta);
+        }
+
+        /* ===== Form ===== */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            display: block;
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-control {
+            width: 100%;
+            border: 1px solid var(--gray-light);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--radius-md);
+            padding: 0.85rem 1rem;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            font-family: "Nunito", sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 4px rgba(107, 162, 160, 0.15);
+            background: #fff;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .w-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ===== Notification ===== */
+        .notification {
+            display: none;
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .notification.success {
+            display: block;
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            color: #2E7D32;
+        }
+
+        .notification.error {
+            display: block;
+            background: rgba(231, 111, 81, 0.1);
+            border: 1px solid rgba(231, 111, 81, 0.2);
+            color: #C0392B;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: var(--teal-deep);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-grid h4 {
+            color: white;
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+        }
+
+        .footer-grid a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            padding: 0.2rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-grid a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            padding-top: 1.5rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* ===== Responsive ===== */
+        @media (min-width: 768px) {
+            .contact-info {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 820px) {
+            .nav {
+                display: flex;
+            }
+            .mobile-menu-toggle {
+                display: none;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 639px) {
+            .card {
+                padding: 1.2rem;
+            }
+            .page-hero {
+                padding: 1.5rem 0;
+            }
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+            .contact-item {
+                padding: 0.5rem 0.6rem;
+            }
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .page-hero {
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Gentle Hands <span class="logo-heart">❤️</span></a>
+                <nav class="nav">
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="how-it-works.html">How It Works</a>
+                    <a href="contact.html" class="active">Contact</a>
+                    <div class="nav-auth">
+                        <a href="login.html">Login</a>
+                        <a href="nurse-register.html" class="btn btn-secondary btn-sm">Register</a>
+                    </div>
+                </nav>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">☰</button>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="how-it-works.html">How It Works</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+                <a href="nurse-register.html" class="btn btn-secondary btn-sm" style="display:inline-block; margin-top:0.5rem;">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>Have questions? We'd love to hear from you. Reach out and we'll respond as soon as possible.</p>
+        </div>
+    </section>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        <div class="container" style="padding: 0 0 3rem; max-width: var(--max-width); margin-inline: auto;">
+
+            <!-- Contact Info Card -->
+            <div class="card">
+                <h3>📬 Get in Touch</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="icon">📧</span>
+                        <div>
+                            <span class="label">Email:</span>
+                            <a href="mailto:admin@gentlehands.com">admin@gentlehands.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📞</span>
+                        <div>
+                            <span class="label">Phone:</span>
+                            <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                        </div>
+                    </div>
+                    <div class="contact-item" style="grid-column: 1 / -1;">
+                        <span class="icon">📍</span>
+                        <div>
+                            <span class="label">Address:</span>
+                            <span>Lusaka, Zambia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form Card -->
+            <div class="card">
+                <h3>✉️ Send Us a Message</h3>
+
+                <!-- Notification -->
+                <div id="notification" class="notification"></div>
+
+                <form onsubmit="handleContactForm(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="contactName">Your Name *</label>
+                        <input type="text" id="contactName" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="contactEmail">Email *</label>
+                        <input type="email" id="contactEmail" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="contactSubject">Subject *</label>
+                        <input type="text" id="contactSubject" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="contactMessage">Message *</label>
+                        <textarea id="contactMessage" class="form-control" rows="5" required placeholder="Tell us how we can help..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-full">Send Message</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Gentle Hands</h4>
+                    <p style="color: rgba(255,255,255,0.8);">Professional in-home care services connecting verified nurses with families.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="how-it-works.html">How It Works</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+                <div>
+                    <h4>Get Started</h4>
+                    <a href="nurse-register.html">Register as Nurse</a>
+                    <a href="client-request.html">Request Care</a>
+                    <a href="login.html">Login</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Gentle Hands Zambia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // Mobile Menu Toggle
+        const toggleBtn = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        toggleBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('open');
+            this.textContent = mobileMenu.classList.contains('open') ? '✕' : '☰';
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('open');
+                toggleBtn.textContent = '☰';
+            });
+        });
+
+        // Show Notification
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = 'notification ' + type;
+            
+            // Auto-hide after 5 seconds
+            clearTimeout(window.notificationTimeout);
+            window.notificationTimeout = setTimeout(function() {
+                notification.className = 'notification';
+            }, 5000);
+        }
+
+        // Handle Contact Form
+        function handleContactForm(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const subject = document.getElementById('contactSubject').value;
+            const message = document.getElementById('contactMessage').value;
+
+            if (!name || !email || !subject || !message) {
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            // In a real application, this would send data to a server
+            console.log('Contact Form Data:', { name, email, subject, message });
+            
+            showNotification('Your message has been sent successfully! We\'ll get back to you soon.', 'success');
+            
+            // Reset form
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactSubject').value = '';
+            document.getElementById('contactMessage').value = '';
+        }
+    </script>
+
+</body>
+</html>

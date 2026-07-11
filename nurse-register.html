@@ -1,0 +1,951 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurse Registration - Gentle Hands Zambia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS Variables - Gentle Hands Zambia Brand Palette ===== */
+        :root {
+            /* Primary Brand Colors */
+            --teal: #6BA2A0;
+            --teal-deep: #3E6F6C;
+            --terracotta: #D97A5C;
+            --blush: #E8A2A6;
+            --cream: #F5F0E1;
+            --cream-light: #FCFBF8;
+            
+            /* Supporting Colors */
+            --sage: #AFC8B8;
+            --charcoal: #4A4A4A;
+            --gray-light: #E7ECEB;
+            
+            /* Status Colors */
+            --success: #4CAF50;
+            --warning: #F4A261;
+            --error: #E76F51;
+            --info: #5B8DEF;
+            
+            /* Derived Variables */
+            --primary-navy: var(--teal-deep);
+            --primary-teal: var(--teal);
+            --warm-stone: var(--terracotta);
+            --warm-blush: var(--blush);
+            --bg: var(--cream-light);
+            --text: var(--charcoal);
+            --muted: #6B7A78;
+            --shadow: 0 20px 60px rgba(62, 111, 108, 0.14);
+            --shadow-sm: 0 4px 20px rgba(62, 111, 108, 0.08);
+            --radius-xl: 24px;
+            --radius-lg: 18px;
+            --radius-md: 14px;
+            --radius-sm: 10px;
+            --max-width: 800px;
+        }
+
+        /* ===== Reset & Base ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Nunito", sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(calc(100% - 2rem), 1200px);
+            margin-inline: auto;
+        }
+
+        /* ===== Typography ===== */
+        h1, h2, h3, h4 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--teal-deep);
+        }
+        h2 {
+            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+        }
+        h3 {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            color: var(--teal-deep);
+        }
+        h4 {
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        .text-gray {
+            color: var(--muted);
+        }
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+        .mt-4 {
+            margin-top: 1.5rem;
+        }
+
+        /* ===== Buttons ===== */
+        .btn {
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            border-radius: 999px;
+            padding: 0.85rem 2rem;
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            text-align: center;
+        }
+
+        .btn:active {
+            transform: translateY(1px) scale(0.98);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
+            color: #fff;
+            box-shadow: 0 16px 32px rgba(62, 111, 108, 0.28);
+        }
+        .btn-primary:hover {
+            box-shadow: 0 20px 40px rgba(62, 111, 108, 0.35);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--terracotta) 0%, #C96A4C 100%);
+            color: #fff;
+            box-shadow: 0 16px 32px rgba(217, 122, 92, 0.28);
+        }
+        .btn-secondary:hover {
+            box-shadow: 0 20px 40px rgba(217, 122, 92, 0.35);
+        }
+
+        .btn-sage {
+            background: var(--sage);
+            color: var(--teal-deep);
+            box-shadow: 0 16px 32px rgba(175, 200, 184, 0.3);
+        }
+        .btn-sage:hover {
+            box-shadow: 0 20px 40px rgba(175, 200, 184, 0.4);
+        }
+
+        .btn-lg {
+            padding: 1rem 2.8rem;
+            font-size: 1.05rem;
+        }
+        .btn-lg.w-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 1.2rem;
+            font-size: 0.8rem;
+        }
+
+        .w-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(252, 251, 248, 0.85);
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 72px;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: "Poppins", sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--teal-deep);
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .logo-heart {
+            color: var(--blush);
+            font-size: 1.3rem;
+        }
+
+        .nav {
+            display: none;
+            align-items: center;
+            gap: 2rem;
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .nav a {
+            position: relative;
+            transition: color 0.25s ease;
+        }
+
+        .nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.3rem;
+            width: 100%;
+            height: 2px;
+            background: var(--teal);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.35s ease;
+            border-radius: 4px;
+        }
+
+        .nav a:hover {
+            color: var(--teal-deep);
+        }
+        .nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-menu-toggle {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--teal-deep);
+            cursor: pointer;
+            padding: 0.3rem 0.5rem;
+            font-family: "Nunito", sans-serif;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 1rem 0 1.5rem;
+            border-top: 1px solid var(--gray-light);
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            padding: 0.4rem 0;
+            transition: color 0.25s ease;
+        }
+        .mobile-menu a:hover {
+            color: var(--teal-deep);
+        }
+
+        /* ===== Page Hero ===== */
+        .page-hero {
+            background: linear-gradient(135deg, var(--teal-deep) 0%, var(--teal) 100%);
+            color: white;
+            padding: 2.5rem 0 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-hero h1 {
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+
+        .page-hero p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== Form Container ===== */
+        .form-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 0 3rem;
+        }
+
+        /* ===== Form ===== */
+        .form-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            border: 1px solid var(--gray-light);
+            box-shadow: var(--shadow);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .form-section-title {
+            font-family: "Poppins", sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--teal-deep);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-section-title::before {
+            content: "";
+            width: 3px;
+            height: 1.2rem;
+            background: var(--teal);
+            border-radius: 4px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            display: block;
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-control {
+            width: 100%;
+            border: 1px solid var(--gray-light);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--radius-md);
+            padding: 0.85rem 1rem;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            font-family: "Nunito", sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 4px rgba(107, 162, 160, 0.15);
+            background: #fff;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7A78' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        input[type="file"].form-control {
+            padding: 0.6rem 1rem;
+        }
+
+        /* ===== Checkbox Grid ===== */
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.6rem;
+            border-radius: var(--radius-sm);
+            transition: background 0.2s ease;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-item:hover {
+            background: rgba(107, 162, 160, 0.06);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 1rem;
+            height: 1rem;
+            accent-color: var(--teal);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* ===== Form Checkboxes (Terms) ===== */
+        .form-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.6;
+            cursor: pointer;
+            padding: 0.3rem 0;
+        }
+
+        .form-checkbox input[type="checkbox"] {
+            width: 1rem;
+            height: 1rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+            accent-color: var(--teal);
+            cursor: pointer;
+        }
+
+        .form-checkbox label {
+            cursor: pointer;
+            color: var(--muted);
+        }
+
+        .form-checkbox a {
+            color: var(--teal-deep);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .form-checkbox a:hover {
+            color: var(--terracotta);
+        }
+
+        /* ===== File Preview ===== */
+        .file-preview {
+            margin-top: 0.5rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: var(--radius-sm);
+            background: rgba(107, 162, 160, 0.06);
+            border: 1px dashed var(--gray-light);
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .file-preview.success {
+            border-color: var(--success);
+            background: rgba(76, 175, 80, 0.06);
+            color: #2E7D32;
+        }
+
+        /* ===== Notification ===== */
+        .notification {
+            display: none;
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .notification.success {
+            display: block;
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            color: #2E7D32;
+        }
+
+        .notification.error {
+            display: block;
+            background: rgba(231, 111, 81, 0.1);
+            border: 1px solid rgba(231, 111, 81, 0.2);
+            color: #C0392B;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: var(--teal-deep);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-grid h4 {
+            color: white;
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+        }
+
+        .footer-grid a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            padding: 0.2rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-grid a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            padding-top: 1.5rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* ===== Responsive ===== */
+        @media (min-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+            .checkbox-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 820px) {
+            .nav {
+                display: flex;
+            }
+            .mobile-menu-toggle {
+                display: none;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 639px) {
+            .form-card {
+                padding: 1.2rem;
+            }
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-hero {
+                padding: 1.5rem 0;
+            }
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-card {
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        .page-hero {
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Gentle Hands <span class="logo-heart">❤️</span></a>
+                <nav class="nav">
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="how-it-works.html">How It Works</a>
+                    <a href="contact.html">Contact</a>
+                    <div class="nav-auth">
+                        <a href="login.html">Login</a>
+                        <a href="nurse-register.html" class="btn btn-secondary btn-sm">Register</a>
+                    </div>
+                </nav>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">☰</button>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="how-it-works.html">How It Works</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+                <a href="nurse-register.html" class="btn btn-secondary btn-sm" style="display:inline-block; margin-top:0.5rem;">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Nurse Registration</h1>
+            <p>Join Gentle Hands Zambia and start connecting with families who need your compassionate care</p>
+        </div>
+    </section>
+
+    <!-- ===== FORM ===== -->
+    <main>
+        <div class="container">
+            <div class="form-container">
+
+                <!-- Notification -->
+                <div id="notification" class="notification"></div>
+
+                <!-- Form Card -->
+                <div class="form-card">
+                    <form id="nurseRegistrationForm" onsubmit="handleNurseRegistration(event)" enctype="multipart/form-data">
+
+                        <!-- Section 1: Personal Information -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Personal Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="fullName">Full Name *</label>
+                                    <input type="text" id="fullName" class="form-control" placeholder="e.g., Sarah Johnson" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="phone">Phone *</label>
+                                    <input type="tel" id="phone" class="form-control" placeholder="+260 123 456 789" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email *</label>
+                                <input type="email" id="email" class="form-control" placeholder="nurse@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="password">Password *</label>
+                                <input type="password" id="password" class="form-control" placeholder="Create a secure password" required>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Professional Information -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Professional Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="nrcNumber">NRC Number *</label>
+                                    <input type="text" id="nrcNumber" class="form-control" placeholder="e.g., 123456/78/1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="practicingStatus">Practicing Status *</label>
+                                    <select id="practicingStatus" class="form-control" required>
+                                        <option value="ACTIVE">Active</option>
+                                        <option value="PENDING">Pending</option>
+                                        <option value="EXPIRED">Expired</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="yearsExperience">Years of Experience *</label>
+                                <input type="number" id="yearsExperience" class="form-control" min="0" placeholder="e.g., 5" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="qualifications">Qualification Certificates</label>
+                                <input type="file" id="qualifications" class="form-control" accept=".pdf,.jpg,.jpeg,.png" onchange="previewFile('qualifications','qualPreview')">
+                                <div id="qualPreview"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="professionalPhoto">Professional Photo</label>
+                                <input type="file" id="professionalPhoto" class="form-control" accept=".jpg,.jpeg,.png" onchange="previewFile('professionalPhoto','photoPreview')">
+                                <div id="photoPreview"></div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Services & Availability -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Services &amp; Availability</h3>
+                            <div class="form-group">
+                                <label class="form-label">Services You Offer *</label>
+                                <div class="checkbox-grid">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" class="service-checkbox" value="ELDERLY_COMPANIONSHIP">
+                                        Elderly Companionship
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" class="service-checkbox" value="MEDICATION_REMINDERS">
+                                        Medication Reminders
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" class="service-checkbox" value="WELLNESS_CHECKS">
+                                        Wellness Checks
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" class="service-checkbox" value="POST_HOSPITAL_RECOVERY">
+                                        Post-Hospital Recovery
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" class="service-checkbox" value="HOME_NURSING_VISITS">
+                                        Home Nursing Visits
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="availability">Availability *</label>
+                                <input type="text" id="availability" class="form-control" placeholder="e.g., Mon-Fri 9am-5pm, Sat 10am-2pm" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="bio">Bio / Personal Statement *</label>
+                                <textarea id="bio" class="form-control" rows="4" required placeholder="Tell us about yourself, your experience, your approach to care, and why you want to join Gentle Hands Zambia..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Terms -->
+                        <div class="form-section">
+                            <div class="form-checkbox">
+                                <input type="checkbox" id="consent" required>
+                                <label for="consent">I consent to Gentle Hands Zambia storing and processing my data as per the <a href="privacy.html" target="_blank">Privacy Policy</a>.</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-full">Register as Nurse</button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Gentle Hands</h4>
+                    <p style="color: rgba(255,255,255,0.8);">Professional in-home care services connecting verified nurses with families.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="how-it-works.html">How It Works</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+                <div>
+                    <h4>Get Started</h4>
+                    <a href="nurse-register.html">Register as Nurse</a>
+                    <a href="client-request.html">Request Care</a>
+                    <a href="login.html">Login</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Gentle Hands Zambia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // Mobile Menu Toggle
+        const toggleBtn = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        toggleBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('open');
+            this.textContent = mobileMenu.classList.contains('open') ? '✕' : '☰';
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('open');
+                toggleBtn.textContent = '☰';
+            });
+        });
+
+        // Show Notification
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = 'notification ' + type;
+
+            // Auto-hide after 5 seconds
+            clearTimeout(window.notificationTimeout);
+            window.notificationTimeout = setTimeout(function() {
+                notification.className = 'notification';
+            }, 5000);
+        }
+
+        // File Preview
+        function previewFile(inputId, previewId) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+            const file = input.files[0];
+
+            if (file) {
+                preview.innerHTML = `<div class="file-preview success">✅ ${file.name} (${(file.size / 1024).toFixed(1)} KB)</div>`;
+            } else {
+                preview.innerHTML = '';
+            }
+        }
+
+        // Submit Nurse Registration
+        function handleNurseRegistration(e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const nrcNumber = document.getElementById('nrcNumber').value;
+            const practicingStatus = document.getElementById('practicingStatus').value;
+            const yearsExperience = document.getElementById('yearsExperience').value;
+            const availability = document.getElementById('availability').value;
+            const bio = document.getElementById('bio').value;
+            const consent = document.getElementById('consent').checked;
+
+            // Get selected services
+            const services = [];
+            document.querySelectorAll('.service-checkbox:checked').forEach(cb => {
+                services.push(cb.value);
+            });
+
+            // Validation
+            if (!fullName || !phone || !email || !password || !nrcNumber || !yearsExperience || !availability || !bio || !consent) {
+                showNotification('Please fill in all required fields and accept the Privacy Policy.', 'error');
+                return;
+            }
+
+            if (services.length === 0) {
+                showNotification('Please select at least one service.', 'error');
+                return;
+            }
+
+            // In a real application, this would send data to a server
+            const formData = new FormData();
+            formData.append('fullName', fullName);
+            formData.append('phone', phone);
+            formData.append('email', email);
+            formData.append('password', password);
+            formData.append('nrcNumber', nrcNumber);
+            formData.append('practicingStatus', practicingStatus);
+            formData.append('yearsOfExperience', yearsExperience);
+            formData.append('availability', availability);
+            formData.append('bio', bio);
+            formData.append('services', JSON.stringify(services));
+
+            const qualifications = document.getElementById('qualifications').files[0];
+            const professionalPhoto = document.getElementById('professionalPhoto').files[0];
+            if (qualifications) formData.append('qualifications', qualifications);
+            if (professionalPhoto) formData.append('professionalPhoto', professionalPhoto);
+
+            console.log('Nurse Registration Data:', Object.fromEntries(formData));
+
+            showNotification('Registration submitted successfully! Our team will review your application.', 'success');
+
+            // Optionally reset form
+            // document.getElementById('nurseRegistrationForm').reset();
+            // document.getElementById('qualPreview').innerHTML = '';
+            // document.getElementById('photoPreview').innerHTML = '';
+        }
+    </script>
+
+</body>
+</html>
